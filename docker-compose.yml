@@ -4,10 +4,8 @@ services:
     image: postgres
   web:
     build: .
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
-    volumes:
-      - .:/myapp
+    image: sample_rails:single-container
     ports:
-      - "3000:3000"
+      - "80:80"
     depends_on:
       - db
