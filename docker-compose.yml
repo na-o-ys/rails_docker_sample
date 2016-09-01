@@ -1,11 +1,10 @@
 version: '2'
 services:
-  db:
-    image: postgres
   web:
     build: .
-    image: sample_rails:single-container
     ports:
       - "80:80"
     depends_on:
       - db
+  db:
+    image: postgres
