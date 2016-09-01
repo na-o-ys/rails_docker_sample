@@ -1,11 +1,27 @@
 version: '2'
 services:
-  db:
-    image: postgres
   web:
     build: .
-    image: sample_rails:single-container
+    image: sample_rails:multiple-container
     ports:
       - "80:80"
+    volumes_from:
+      - datastore
     depends_on:
       - db
+      - datastore
+      - nginx
+
+  nginx:
+    build: containers/nginx
+    image: sample_rails_nginx
+    volumes_from:
+      - datastore
+    depends_on:
+      - datastore
+
+  db:
+    image: postgres
+
+  datastore:
+    build: containers/datastore
