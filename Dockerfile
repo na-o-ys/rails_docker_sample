@@ -17,4 +17,4 @@ VOLUME /app/tmp
 
 # Start Server
 # TODO: environment
-CMD mkdir -p tmp/sockets && rm -f tmp/sockets/* && bundle exec puma
+CMD bundle exec puma
