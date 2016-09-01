@@ -3,8 +3,6 @@ services:
   web:
     build: .
     image: sample_rails:multiple-container
-    ports:
-      - "80:80"
     volumes_from:
       - datastore
     depends_on:
@@ -15,6 +13,8 @@ services:
   nginx:
     build: containers/nginx
     image: sample_rails_nginx
+    ports:
+      - "80:80"
     volumes_from:
       - datastore
     depends_on:

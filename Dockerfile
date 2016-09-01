@@ -12,4 +12,4 @@ ADD . /app
 
 # Start Server
 # TODO: environment
-CMD mkdir /app/tmp/sockets && bundle exec puma
+CMD mkdir -p tmp/sockets && rm -f tmp/sockets/* && bundle exec puma
