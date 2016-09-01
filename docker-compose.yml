@@ -2,26 +2,20 @@ version: '2'
 services:
   web:
     build: .
-    image: sample_rails:multiple-container
-    volumes_from:
-      - datastore
+    image: web_multicontainer
+    volumes:
+      - /app/log # persist logs
     depends_on:
       - db
-      - datastore
-      - nginx
 
   nginx:
     build: containers/nginx
-    image: sample_rails_nginx
     ports:
       - "80:80"
     volumes_from:
-      - datastore
+      - web
     depends_on:
-      - datastore
+      - web
 
   db:
     image: postgres
-
-  datastore:
-    build: containers/datastore
